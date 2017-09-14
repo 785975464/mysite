@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>papershenqi</title>
+</head>
+
+<body>
+<div>
+	<textarea name="t1" id="t1" placeholder="复制文本至此处" value="1" rows="30" cols="60" style=" position:absolute;left:50px;top:50px;"></textarea>
+	<textarea name="t2" id="t2" placeholder="文本结果在此处" value="2" rows="30" cols="60" style=" position:absolute;left:800px;top:50px;"></textarea>
+	<input type="button" name="btn" id="btnClick" value="点击" onClick="fun()" style="position: absolute; left: 586px; top: 170px; width: 131px; height: 47px;"/>
+	<input type="button" name="btn" id="btnCopy" value="复制" onClick="copy()" style="position: absolute; left: 586px; top: 250px; width: 131px; height: 47px;"/>
+	<p id="p" style="color: red; position: absolute; left: 586px; top: 280px;"></p>
+	<input type="button" name="btn" id="btnClean" value="清空" onClick="clean()" style="position: absolute; left: 586px; top: 330px; width: 131px; height: 47px;"/>
+</div>
+<script language="javascript">
+    function fun()
+	{
+		document.getElementById("t2").value='';
+		var s=document.getElementById("t1").value;
+		s=s.replace(/[\n]/ig,' ');		//用正则表达式去掉换行符
+		//var replaceStr = ' ';			//去掉空格
+		//s = s.split(replaceStr).join('');
+		//str.replace(/[\r\n]/ig, ' ');
+		document.getElementById("t2").value=s;
+	}
+	function copy()
+	{
+	
+	document.getElementById("t1").style.display="none";
+	document.getElementById("btnClick").style.display="none";
+	//document.getElementById("btnCopy").style.display="none";
+	document.getElementById("btnClean").style.display="none";
+	
+	document.getElementById("btnCopy").value="";
+	//alert(document.getElementById("t2").value);
+	/**
+	var btns = document.getElementsByName("btn");
+	for(var i=0;i<btns.length;i++){
+		btns[i].style.display="none";
+	}
+	**/
+	//document.getElementById("t2").visible="false";
+	window.document.execCommand("SelectAll");
+	window.document.execCommand("Copy");
+	
+	document.getElementById("t1").style.display="";
+	document.getElementById("btnClick").style.display="";
+	//document.getElementById("btnCopy").style.display="";
+	document.getElementById("btnClean").style.display="";
+	document.getElementById("btnCopy").value="复制";
+	
+	document.getElementById("p").innerHTML = "复制成功！";
+	}
+	function clean()
+	{
+		document.getElementById("t1").value='';
+		document.getElementById("t2").value='';
+		document.getElementById("p").innerHTML = "";
+	}
+</script>
+</body>
+</html>
